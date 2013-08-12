@@ -1,0 +1,42 @@
+$ ipython2 simple_codegen_example.py 
+*********** DECLARATIONS **********
+bool *_array_gp_not_refractory = new bool [1000];
+double *_array_gp_lastspike = new double [1000];
+double *_array_gp_V = new double [1000];
+*********** MAIN LOOP *************
+const int _num_neurons = 1000;
+const int _numV = 1000;
+const int _numnot_refractory = 1000;
+const double tau = 0.01;
+const int _numlastspike = 1000;
+// USE_SPECIFIERS { _num_neurons }
+
+////// SUPPORT CODE ///
+//
+
+////// HANDLE DENORMALS ///
+
+
+////// HASH DEFINES ///////
+
+
+///// POINTERS ////////////
+double * __restrict__ _ptr_array_gp_V = _array_gp_V;
+double * __restrict__ _ptr_array_gp_lastspike = _array_gp_lastspike;
+bool * __restrict__ _ptr_array_gp_not_refractory = _array_gp_not_refractory;
+
+//// MAIN CODE ////////////
+for(int _neuron_idx=0; _neuron_idx<_num_neurons; _neuron_idx++)
+{
+    const int _vectorisation_idx = _neuron_idx;
+    const double lastspike = _ptr_array_gp_lastspike[_neuron_idx];
+    bool not_refractory = _ptr_array_gp_not_refractory[_neuron_idx];
+    double V = _ptr_array_gp_V[_neuron_idx];
+    not_refractory = 1 * (t - lastspike > 0.005);
+    const double _V = V * exp(-(dt) * not_refractory / tau);
+    V = _V;
+    _ptr_array_gp_not_refractory[_neuron_idx] = not_refractory;
+    _ptr_array_gp_V[_neuron_idx] = V;
+}
+
+

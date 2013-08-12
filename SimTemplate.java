@@ -55,18 +55,18 @@ public class SIMNAME {
         simulationStatus += extraText;
     }
 
-    %%GLOBALS%%
-
-    public void setup() {
-        %%INITIALISERS%%
-    }
-
-    public void run() {
-        for (t=0; t<_duration; t+=dt) {
-            %%RUNCODE%%
-            progress = t/_duration;
-        }
-    }
+//    %%GLOBALS%%
+//
+//    public void setup() {
+//        %%INITIALISERS%%
+//    }
+//
+//    public void run() {
+//        for (t=0; t<_duration; t+=dt) {
+//            %%RUNCODE%%
+//            progress = t/_duration;
+//        }
+//    }
 
 
 }

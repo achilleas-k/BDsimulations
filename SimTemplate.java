@@ -19,8 +19,8 @@ public class SIMNAME {
 
     // these vars should be available for almost all simulations
     final static Random rng = new Random();
-    final float _duration = 0.5;
-    final float dt = 0.0001;
+    final float _duration = 0.5f;
+    final float dt = 0.0001f;
     float t;
     float progress;
     private String simulationStatus;
@@ -67,7 +67,6 @@ public class SIMNAME {
 //            progress = t/_duration;
 //        }
 //    }
-
 
 }
 
